@@ -1,19 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export function useInput(initialValue) {
-  const [value, setValue] = useState(initialValue)
-
-  const customSetter = (newValue) => {
-    console.log('New Value:', newValue)
-    setValue(newValue)
-  }
-
-  return [value, customSetter]
-}
-
 export function useLocalStorage(key, initialValue) {
-  const [value, setValue] = useInput(() => {
+  const [value, setValue] = useState(() => {
     return window.localStorage.getItem(key) || initialValue;
   })
 
