@@ -3,12 +3,13 @@ import axios from 'axios';
 
 export function useLocalStorage(key, initialValue) {
   const [value, setValue] = useState(() => {
-    return window.localStorage.getItem(key) || initialValue;
+    const item = window.localStorage.getItem(key)
+    return item ? JSON.parse(item) : initialValue;
   })
 
   const customSetter = (newValue) => {
     setValue(newValue)
-    window.localStorage.setItem(key, newValue)
+    window.localStorage.setItem(key, JSON.stringify(newValue))
   }
 
   return [value, customSetter]
