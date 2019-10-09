@@ -31,14 +31,13 @@ export function useCoinData() {
 }
 
 export function useDarkMode() {
-  const [darkMode, setDarkMode] = useLocalStorage('dark')
+  const [value, setValue] = useLocalStorage('dark', false)
 
   useEffect(() => {
-    darkMode
+    value
       ? document.body.classList.add('dark-mode')
       : document.body.classList.remove('dark-mode')
-  }, [darkMode])
+  }, [value])
 
-
-  return [darkMode, setDarkMode]
+  return [value, setValue]
 }
